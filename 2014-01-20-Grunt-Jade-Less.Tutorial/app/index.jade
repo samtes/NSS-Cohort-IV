@@ -1,0 +1,31 @@
+doctype html
+html(lang='eg')
+  head
+    meta(charset='utf-8')
+    title Jade Toutorial
+    link(rel='stylesheet', href='/css/style.css')
+    script(src='/js/vendor/jquery-1.10.2.min.js')
+    script(src='/js/source/main.js')
+  body
+    header
+      h1 Welcome to Jade!
+      img(src='http://1.bp.blogspot.com/-mv9fPnoDK0c/UE52lCD5jFI/AAAAAAAAEa0/g8cOfgcZt98/s1600/Dogs%2Bdinner%2Bpups.gif')
+    #section1
+     ul
+      li 1
+      li 2
+      li 3
+     - var firstName = 'Sam';
+     h2= firstName
+
+     - for(var i = 0; i < 100; i++)
+      h3 hello World
+      h3= i
+    #section2
+      p This is a Paragraph 1
+      p 
+        | This is Paragraph 2
+        br
+        | Addendum <strong> to </strong>Paragraph
+      span  Span 1
+    footer.foot1.foot2#footerid
