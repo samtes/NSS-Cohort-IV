@@ -6,6 +6,7 @@
   $(document).ready(initialize);
 
   var animals = [];
+  var counter = 0;
 
 
   function initialize(){
@@ -46,12 +47,12 @@
       $aGender.attr('dataValue', gender);
       $aGender.attr('href', '#');
       var $aColor = $('<a>');
-      $aColor.attr('dataSearch', 'name');
+      $aColor.attr('dataSearch', 'color');
       $aColor.attr('dataValue', color);
       $aColor.attr('href', '#');
       var $aDesc = $('<a>');
       $aDesc.attr('dataSearch', 'description');
-      $aDesc.attr('dataValue', name);
+      $aDesc.attr('dataValue', description);
       $aDesc.attr('href', '#');
 
 
@@ -67,7 +68,7 @@
       var $tdGender = $('<td>');
       var $tdColor = $('<td>');
       var $tdDesc = $('<td>');
-      //var $tdPhoto = $('<td>');
+      var $tdPhoto = $('<td>');
       //var $divImg = $('<img>');
 
 
@@ -88,26 +89,29 @@
       //$aPhoto.append($tdPhoto);
 
       var photo = spitImages(animals[i].photos);
-
+      $tdPhoto.append(photo);
 
       var $tr = $('<tr>');
-      $tr.append($tdName, $tdSpecies, $tdAge, $tdGender, $tdColor, $tdDesc, photo);
+      $tr.append($tdName, $tdSpecies, $tdAge, $tdGender, $tdColor, $tdDesc, $tdPhoto);
       $('tbody').append($tr);
     }
   }
 
   function spitImages(obj){
-    for (var i = 0; i < obj.length; i++){
+    debugger;
+    for (var i = counter; i < obj.length; i++){
       var $aPhoto = $('<a>');
       $aPhoto.attr('dataSearch', 'photo');
-      $aPhoto.attr('dataValue', obj[i]);
+      $aPhoto.attr('dataValue', 'img'+[i]);
       $aPhoto.attr('href', '#');
-      var $tdPhoto = $('<td>');
       var $divImg = $('<img>');
-      $tdPhoto.append($divImg);
+      $divImg.css('width', '35px');
       $divImg.attr('src', obj[i]);
-      $aPhoto.append($tdPhoto);
-      return $aPhoto;
+      $aPhoto.append($divImg);
+      var $parDiv = $('<div>');
+      $parDiv.append($aPhoto);
+      counter++;
+      return $parDiv;
     }
   }
   function addAnimal(){
