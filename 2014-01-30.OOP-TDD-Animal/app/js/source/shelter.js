@@ -11,6 +11,7 @@ var Shelter = (function(){
     this.location = 'Not Defined';
     this.capacity = 0;
     this.animals = [];
+    this.placedAnimals = [];
   }
 
   Shelter.prototype.placeAnimal = function(name){
@@ -19,7 +20,7 @@ var Shelter = (function(){
         var x =  this.animals[i];
         var remove = _.reject(this.animals, x);
         this.animals = remove;
-        return x;
+        this.placedAnimals.push(x);
       }
     }
   };

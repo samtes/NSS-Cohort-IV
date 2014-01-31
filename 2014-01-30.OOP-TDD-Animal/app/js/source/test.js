@@ -143,14 +143,19 @@ test('Client#adoptanimal()', function(){
   var a1 = new Animal('king', 'dog', 'male', 9);
   var a2 = new Animal('Bartania', 'cat', 'female', 3);
   var a3 = new Animal('Reemus', 'lino', 'male', 5);
-  c1.placeAnimal(a1);
-  c1.placeAnimal(a2);
-  c1.placeAnimal(a3);
+  var s1 = new Shelter('Green Hill Shlter');
+  s1.addAnimal(a1);
+  s1.addAnimal(a2);
+  s1.addAnimal(a3);
+  s1.placeAnimal(a1);
+  s1.placeAnimal(a2);
+  s1.placeAnimal(a3);
   var j = c1.adoptAnimal('Reemus');
   var k = c1.adoptAnimal('king');
   var h = c1.adoptAnimal('Bartania');
 
   ok(c1.animals.length === 3, 'c1 should have 3 animals');
+  ok(s1.animals.length === 0, 's1 should have 0 animals');
   deepEqual(k.name, 'king', 'a1 name should be King');
   deepEqual(k.species, 'dog', 'a1 name should be dog');
   deepEqual(k.name, 'male', 'a1 name should be male');
