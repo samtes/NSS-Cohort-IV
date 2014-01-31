@@ -64,10 +64,12 @@ test('Shelter#placeAnimal()', function(){
   s1.addAnimal(a1);
   s1.addAnimal(a2);
   s1.addAnimal(a3);
-  var x = s1.placeAnimal('king');
+  s1.placeAnimal('king');
 
   ok(s1.animals.length === 2, 's1 should have a length of 2');
-  deepEqual(x.name, 'king', 'a1 name should be King');
+  deepEqual(s1.placedAnimals[0].name, 'king', 'a1 name should be King');
+  deepEqual(s1.placedAnimals[0].gender, 'male', 'a1 gender should be male');
+  deepEqual(s1.placedAnimals[0].age, 9, 'a1 age should be 9');
 });
 
 

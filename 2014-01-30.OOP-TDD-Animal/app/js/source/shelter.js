@@ -15,11 +15,12 @@ var Shelter = (function(){
   }
 
   Shelter.prototype.placeAnimal = function(name){
+    debugger;
     for (var i = 0; i < this.animals.length; i++){
       if (this.animals[i].name === name){
         var x =  this.animals[i];
-        var remove = _.reject(this.animals, x);
-        this.animals = remove;
+        this.animals = _.reject(this.animals, x);
+        //this.animals = remove;
         this.placedAnimals.push(x);
       }
     }
