@@ -1,43 +1,41 @@
 /* jshint unused:false */
-/* global Animal: false */
 
 var Shelter = (function(){
 
   'use strict';
-
+  var hours;
+  var animals = [];
 
   function Shelter(name){
     this.name = name;
     this.location = 'Not Defined';
     this.capacity = 0;
-    this.animals = [];
     this.placedAnimals = [];
   }
 
   Shelter.prototype.placeAnimal = function(name){
-    debugger;
-    for (var i = 0; i < this.animals.length; i++){
-      if (this.animals[i].name === name){
-        var x =  this.animals[i];
-        this.animals = _.reject(this.animals, x);
-        //this.animals = remove;
-        this.placedAnimals.push(x);
-      }
-    }
+    var tempAnimals = _.remove(animals, function(animal){
+      return animal.name === name;
+    });
+    return tempAnimals[0];
   };
 
   Shelter.prototype.addAnimal = function(animal){
-    this.animals.push(animal);
+    animals.push(animal);
   };
 
 
   Shelter.prototype.setHours = function(times){
-      var hours = _.map(times, function(time){
+      var tempHours = _.map(times, function(time){
         return time.day +' '+time.open+'-'+time.close;
       });
 
-      this.hours = hours.join(', ');
+      hours = tempHours.join(', ');
     };
+  
+  Shelter.prototype.getHours = function(){
+    return hours;
+  };
 
   return Shelter;
 

@@ -46,7 +46,7 @@ test('Shelter#setHours()', function(){
   deepEqual(s1.hours, 'Mon 8am-5pm, Wed 11am-2pm, Fri 9am-4pm', 's1 should have an hour of Mon');
 });
 
-test('Shelter#addAnimals()', function(){
+test('Shelter#addAnimal()', function(){
   var s1 = new Shelter('Green Hill Shlter');
   var a1 = new Animal('king', 'dog', 'male', 9);
   s1.addAnimal(a1);
@@ -76,8 +76,7 @@ test('Shelter#placeAnimal()', function(){
 
 
 
-///////////////////////////////////////////////////////////////
-
+    ///////////////////////////////////////////////////////////////
 
 
 test('Animal', function(){
@@ -142,32 +141,14 @@ test('Client#name', function(){
 
 test('Client#adoptanimal()', function(){
   var c1 = new Client('Jimmy');
-  var a1 = new Animal('king', 'dog', 'male', 9);
-  var a2 = new Animal('Bartania', 'cat', 'female', 3);
-  var a3 = new Animal('Reemus', 'lino', 'male', 5);
+  var a1 = new Animal('Reemus', 'lion', 'male', 5);
   var s1 = new Shelter('Green Hill Shlter');
   s1.addAnimal(a1);
-  s1.addAnimal(a2);
-  s1.addAnimal(a3);
-  s1.placeAnimal(a1);
-  s1.placeAnimal(a2);
-  s1.placeAnimal(a3);
-  var j = c1.adoptAnimal('Reemus');
-  var k = c1.adoptAnimal('king');
-  var h = c1.adoptAnimal('Bartania');
-
-  ok(c1.animals.length === 3, 'c1 should have 3 animals');
-  ok(s1.animals.length === 0, 's1 should have 0 animals');
-  deepEqual(k.name, 'king', 'a1 name should be King');
-  deepEqual(k.species, 'dog', 'a1 name should be dog');
-  deepEqual(k.name, 'male', 'a1 name should be male');
-  deepEqual(k.age, 9, 'a1 name should be 9');
-  deepEqual(h.name, 'Bartania', 'a2 name should be Bartania');
-  deepEqual(h.species, 'cat', 'a2 name should be cat');
-  deepEqual(h.name, 'female', 'a2 name should be female');
-  deepEqual(h.age, 3, 'a2 name should be 3');
-  deepEqual(j.name, 'Reemus', 'a3 name should be Reemus');
-  deepEqual(j.species, 'lion', 'a3 name should be lion');
-  deepEqual(j.gender, 'male', 'a3 name should be male');
-  deepEqual(j.age, 5, 'a3 name should be 5');
+  c1.adoptAnimal('Reemus');
+  ok(c1.adoptedAnimals.length === 1, 'c1 should have 1 animal');
+  //ok(s1.animals.length === 1, 's1 should have 1 animals');
+  //deepEqual(c1.adoptedAnimals[0].name, 'Reemus', 'a3 name should be Reemus');
+  //deepEqual(j.species, 'lion', 'a3 name should be lion');
+  deepEqual(c1.adoptedAnimals[0].gender, 'male', 'a3 name should be male');
+  //deepEqual(j.age, 5, 'a3 name should be 5');
 });

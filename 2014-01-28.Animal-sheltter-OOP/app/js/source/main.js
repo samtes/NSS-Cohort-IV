@@ -6,7 +6,7 @@
   $(document).ready(initialize);
 
   var animals = [];
-  var counter = 0;
+  //var counter = 0;
 
 
   function initialize(){
@@ -34,33 +34,49 @@
       $aName.attr('dataSearch','name');
       $aName.attr('dataValue', name);
       $aName.attr('href', '#');
+      $aName.text(name);
       var $aSpecies = $('<a>');
       $aSpecies.attr('dataSearch', 'species');
       $aSpecies.attr('dataValue', species);
       $aSpecies.attr('href', '#');
+      $aSpecies.text(species);
       var $aAge = $('<a>');
       $aAge.attr('dataSearch', 'age');
       $aAge.attr('dataValue', age);
       $aAge.attr('href', '#');
+      $aAge.text(age);
       var $aGender = $('<a>');
       $aGender.attr('dataSearch', 'gender');
       $aGender.attr('dataValue', gender);
       $aGender.attr('href', '#');
+      $aGender.text(gender);
       var $aColor = $('<a>');
       $aColor.attr('dataSearch', 'color');
       $aColor.attr('dataValue', color);
       $aColor.attr('href', '#');
+      $aColor.text(color);
       var $aDesc = $('<a>');
       $aDesc.attr('dataSearch', 'description');
       $aDesc.attr('dataValue', description);
       $aDesc.attr('href', '#');
+      $aDesc.text(description);
 
 
-      //var photo = animals[i].photos;
-      //var $aPhoto = $('<a>');
-      //$aPhoto.attr('dataSearch', 'photo');
-      //$aPhoto.attr('dataValue', photo);
-      //$aPhoto.attr('href', '#');
+      var photo = animals[i].photos;
+      var photoResult;
+      var $aPhoto = $('<a>');
+      var $tdPhoto = $('<td>');
+      $aPhoto.attr('dataSearch', 'photo');
+      $aPhoto.attr('dataValue', 'image');
+      $aPhoto.attr('href', '#');
+      for (var x = 0; x < photo.length; x++){
+        var $divImg = $('<img>');
+        $divImg.css('width', '35px');
+        $divImg.attr('src', photo[x]);
+        $aPhoto.append($divImg);
+        photoResult = $tdPhoto.append($aPhoto);
+        //photoResult = $aPhoto.append($tdPhoto);
+      }
 
       var $tdName = $('<td>');
       var $tdSpecies = $('<td>');
@@ -68,52 +84,48 @@
       var $tdGender = $('<td>');
       var $tdColor = $('<td>');
       var $tdDesc = $('<td>');
-      var $tdPhoto = $('<td>');
+      //var $tdPhoto = $('<td>');
       //var $divImg = $('<img>');
 
 
-      $aName.text(name);
       $tdName.append($aName);
-      $aSpecies.text(species);
       $tdSpecies.append($aSpecies);
-      $aAge.text(age);
       $tdAge.append($aAge);
-      $aGender.text(gender);
       $tdGender.append($aGender);
-      $aColor.text(color);
       $tdColor.append($aColor);
-      $aDesc.text(description);
       $tdDesc.append($aDesc);
       //$tdPhoto.append($divImg);
       //$divImg.attr('src', photo);
       //$aPhoto.append($tdPhoto);
 
-      var photo = spitImages(animals[i].photos);
-      $tdPhoto.append(photo);
+      //var photos = spitImages(photo);
+      //$tdPhoto.append(photos);
 
       var $tr = $('<tr>');
-      $tr.append($tdName, $tdSpecies, $tdAge, $tdGender, $tdColor, $tdDesc, $tdPhoto);
+      $tr.append($tdName, $tdSpecies, $tdAge, $tdGender, $tdColor, $tdDesc, photoResult);
       $('tbody').append($tr);
     }
   }
 
-  function spitImages(obj){
+  /*function spitImages(obj){
     debugger;
+    var $aPhoto = $('<a>');
+    var $parDiv = $('<div>');
+    var $divImg = $('<img>');
+    $aPhoto.attr('dataSearch', 'photo');
+    $aPhoto.attr('dataValue', 'photo');
+    $aPhoto.attr('href', '#');
     for (var i = counter; i < obj.length; i++){
-      var $aPhoto = $('<a>');
-      $aPhoto.attr('dataSearch', 'photo');
-      $aPhoto.attr('dataValue', 'img'+[i]);
-      $aPhoto.attr('href', '#');
-      var $divImg = $('<img>');
       $divImg.css('width', '35px');
       $divImg.attr('src', obj[i]);
       $aPhoto.append($divImg);
-      var $parDiv = $('<div>');
       $parDiv.append($aPhoto);
       counter++;
       return $parDiv;
     }
-  }
+  }*/
+
+
   function addAnimal(){
     var species = $('#species').val();
     var desc = $('#desc').val();
