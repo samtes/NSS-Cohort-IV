@@ -7,7 +7,8 @@ var Cart = (function(){
   function Cart(){
     this.products = [];
   }
- 
+
+//this function calculates the total amount in the products container //
   Object.defineProperty(Cart.prototype, 'Total', {
     get: function(){
       var total = 0;
@@ -18,6 +19,7 @@ var Cart = (function(){
     }
   });
 
+//this function adds a product or products to the products container //  
   Cart.prototype.add = function(product, quantity){
     if (quantity === undefined){
       quantity = 1;
@@ -30,16 +32,19 @@ var Cart = (function(){
     console.log(this.products);
   };
 
+// this function removes a product or products from the products container //   
   Cart.prototype.remove = function(productName, quantity){
-      debugger;
-      var array = _.remove(this.products, function(product){
-          return product.name === productName;
-        });
-      var splice = array.splice(0, quantity);
-      console.log(splice);
-      this.products = this.products.concat(array);
-      return splice;
-    };
+    if (quantity === undefined){
+      quantity = 1;
+    }
+    var array = _.remove(this.products, function(product){
+        return product.name === productName;
+      });
+    var splice = array.splice(0, quantity);
+    console.log(splice);
+    this.products = this.products.concat(array);
+    return splice;
+  };
 
   return Cart;
 })();

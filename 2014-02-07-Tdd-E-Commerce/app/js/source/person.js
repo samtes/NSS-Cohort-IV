@@ -10,39 +10,37 @@ var Person = (function(){
     this.cash = cash;
     this.cart = new Cart();
   }
+  
+// this function checksout the products in the cart if the user has enough cash //
   Person.prototype.checkOut = function(){
-    debugger;
-    this.cash -= this.cart.Total;
-    this.cart.products = [];
-    console.log(this.cash);
-    console.log(this.cart.products);
-    var list = this.cart.products;
-    var num;
-    var item;
-    var price;
-    var checkedOut;
-    var format;
-    var total = 0;
-    for (var i =0 ;i < list.length; i++){
-      num = i + 1;
-      item = list[i].name;
-      price = list[i].price;
-      format = num +'. '+ 'item: '+item +' Price: $'+price;
-      checkedOut = format;
-      total += price;
-      console.log(checkedOut);
+    if (this.cash > this.cart.Total){
+      this.cash -= this.cart.Total;
+      this.cart.products = [];
+      console.log(this.cash);
+      console.log(this.cart.products);
+      var list = this.cart.products;
+      var num;
+      var item;
+      var price;
+      var checkedOut;
+      var format;
+      var total = 0;
+      for (var i =0 ;i < list.length; i++){
+        num = i + 1;
+        item = list[i].name;
+        price = list[i].price;
+        format = num +'. '+ 'item: '+item +' Price: $'+price;
+        checkedOut = format;
+        total += price;
+        console.log(checkedOut);
+      }
+      console.log('Total Ptice is: $'+ total);
+      return checkedOut;
     }
-    console.log('Total Ptice is: $'+ total);
-    return checkedOut;
+    else {
+      prompt('You do not have enough cash!');
+    }
   };
-
-  /*Object.defineProperty(Person.prototype, 'checkOut', {
-    get: function(){
-      var total = this.cart.Total;
-      this.cash = total;
-      return total;
-    }
-  });*/
 
   return Person;
 })();
