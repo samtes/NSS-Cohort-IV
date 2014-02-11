@@ -38,7 +38,7 @@ var Person = (function(){
       return checkedOut;
     }
     else {
-      prompt('You do not have enough cash!');
+      alert('You do not have enough cash!');
     }
   };
 
