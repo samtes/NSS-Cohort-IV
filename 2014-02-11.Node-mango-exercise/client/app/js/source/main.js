@@ -12,10 +12,12 @@
     $('#reset').click(reset);
   }
 
+//this refreshes the browser
   function reset(){
     getExercises();
   }
 
+//this displays the filtred exercises by calling a filter function
   function filter(){
     var url = window.location.origin.replace(/[0-9]{4}/g, 4000);
     url += '/exercises';
@@ -23,7 +25,7 @@
     $.getJSON(url, filterResult);
   }
 
-
+//this taks the data and populates the tabel with the filtered data
   function filterResult(data){
     var name = $('#names').val();
     $('#body').empty();
@@ -47,6 +49,7 @@
     }
   }
 
+//this takes the data on the form and creates an exercise in the data 
   function createExercise(){
     var name = $('#name').val();
     var time = $('#time').val();
@@ -68,11 +71,13 @@
     }
   }
 
+//this cleares the tabel and refreshes the page to load all the data in the tabel
   function exerciseCreated(){
     $('#body').empty();
     getExercises();
   }
 
+//this referes the page and calls another function to load the data in the tabel on page load
   function getExercises(){
     var url = window.location.origin.replace(/[0-9]{4}/g, 4000);
     url += '/exercises';
@@ -80,6 +85,7 @@
     $.getJSON(url, displayExercise);
   }
 
+//this displays all the exercises in the tabel
   function displayExercise(data){
     var arr = [];
     for (var i = 0; i < data.exercises.length; i++){
@@ -102,6 +108,7 @@
     populateNames(arr);
   }
 
+//this filteres the unique names and populates the dropdown
   function populateNames(data){
     var result = _.uniq(data);
     for (var x = 0; x < result.length; x++){
