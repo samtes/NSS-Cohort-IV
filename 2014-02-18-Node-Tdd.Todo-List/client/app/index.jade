@@ -1,0 +1,73 @@
+doctype html
+//[if IE 9]><html class="lt-ie10" lang="en" > <![endif]
+html(class='no-js', lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title To-od 
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/foundation.css')
+    link(rel='stylesheet', href='/css/app.css')
+    script(src='/js/vendor/modernizr.js')
+  body
+    .row
+      .small-12.columns
+        h1 Almost There 
+    .row
+      .small-2.columns
+        input#name(type='text' name='name' placeholder='prioroty')
+      .small-2.columns
+        input#value(type='text' name='value' placeholder='value')
+      .small-8.columns
+    .row
+      .small-4.columns
+        button.addPriority.tiny.radius.expand Add Priority
+    
+    .row
+      .small-4.columns
+        table#priorities
+          thead
+            tr
+              th Name
+              th Value
+              th Edit / Remove
+          tbody
+
+      .small-4.columns
+        #eyes
+
+
+    .row#taskDetail
+      .small-3.columns
+        input#task(type='text' name='name' placeholder='task')
+      .small-3.columns
+        input#date(type='date' name='dueDate' placeholder='due date')
+      .small-3.columns
+        select#priority
+      .small-3.columns
+    .row
+      .small-6.columns
+        input#tags(type='text' name='tags' placeholder='tags')
+      .small-3.columns
+        button#addTask.alert.tiny.radius.expand Add Task
+      .small-3.columns
+
+    .row
+      .small-12.columns
+        table#tasks
+          thead
+            tr
+              th Completed
+              th Task
+              th Due Date
+              th Priority 
+              th Tags
+          tbody
+
+
+
+    script(src='/js/vendor/jquery.js')
+    script(src='/js/vendor/foundation.js')
+    script(src='/js/vendor/lodash.js')
+    script(src='/js/source/main.js')
+

@@ -1,0 +1,49 @@
+doctype html
+//[if IE 9]><html class="lt-ie10" lang="en" > <![endif]
+html(class='no-js', lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/foundation.css')
+    link(rel='stylesheet', href='/less/app.css')
+    script(src='/js/vendor/modernizr.js')
+  body
+  .row
+    .small-12.columns
+      label &nbsp
+    .small-4.columns
+     a#new(href='/') Home
+    .row
+      .small-12.columns
+        h1=title
+    .row
+      .small-5.columns
+        form(action='/albums', method='post', enctype='multipart/form-data')
+          fieldset
+            legend
+            .row
+              .small-10.columns
+                label Title
+                input(type='text', name='title')
+            .row
+              .small-8.columns
+                label Date Taken
+                input(type='date', name='taken')
+            .row
+              .small-10.columns
+                label &nbsp
+                label Cover Image
+                input(type='file', name='cover')
+            .row
+              .small-10.columns
+                label &nbsp
+                button.tiny.radius.alert Insert Album
+
+    script(src='/js/vendor/jquery.js')
+    script(src='/js/vendor/foundation.js')
+    script(src='/js/vendor/lodash.js')
+    script(src='/js/vendor/moment.js')
+    script(src='/js/source/main.js')
+
