@@ -5,7 +5,7 @@ var app = require('../../app/app');
 var request = require('supertest');
 //var expect = require('chai').expect;
 var fs = require('fs');
-var rimraf = require('rimraf');
+var exec = require('child_process').exec;
 var Album;
 
 describe('albums', function(){
@@ -20,15 +20,15 @@ describe('albums', function(){
   });
 
   beforeEach(function(done){
-    var imgdir = __dirname + '/../../app/static/img';
-    rimraf.sync(imgdir);
-    fs.mkdirSync(imgdir);
-    var origfile = __dirname + '/../fixtures/euro.jpg';
-    var copyfile = __dirname + '/../fixtures/euro-copy.jpg';
-    fs.createReadStream(origfile).pipe(fs.createWriteStream(copyfile));
-
-    global.nss.db.dropDatabase(function(err, result){
-      done();
+    var testdir = __dirname + '/../../app/staic/img/test*';
+    var cmd = 'rf -rf' + testdir;
+    exec(cmd, function(){
+      var origfile = __dirname + '/../fixtures/euro.jpg';
+      var copyfile = __dirname + '/../fixtures/euro-copy.jpg';
+      fs.createReadStream(origfile).pipe(fs.createWriteStream(copyfile));
+      global.nss.db.dropDatabase(function(err, result){
+        done();
+      });
     });
   });
 
@@ -47,7 +47,7 @@ describe('albums', function(){
       request(app)
       .post('/albums')
       .attach('cover', filename)
-      .field('title', 'European Vacation')
+      .field('title', 'testEuropean Vacation')
       .field('taken', '2014-02-25')
       .expect(302, done);
     });

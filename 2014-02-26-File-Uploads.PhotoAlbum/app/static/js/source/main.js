@@ -6,9 +6,9 @@
 
   function initialize(){
     $(document).foundation();
-    loadAlbums();
+    //loadAlbums();
   }
-
+/*
   function loadAlbums(){
     var url = '/albums';
     $.getJSON(url, refine);
@@ -31,6 +31,6 @@
     $img.text(album.title);
     $('#albums').prepend($img);
   }
-
+*/
 })();
 
