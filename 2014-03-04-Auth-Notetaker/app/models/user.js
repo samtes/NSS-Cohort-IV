@@ -37,3 +37,21 @@ User.findById = function(id, fn){
     fn(record);
   });
 };
+
+//Function takes an email and password, searches db by email
+// and returns the entire user object if there is a match
+User.findByEmailAndPassword = function(email, password, fn){
+  users.findOne({email:email}, function(err, record){
+    if(!record){
+      fn(null);
+    } else {
+      bcrypt.compare(password, record.password, function(err, res){
+        if(res){
+          fn(record);
+        } else {
+          fn(null);
+        }
+      });
+    }
+  });
+};

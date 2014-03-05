@@ -3,8 +3,8 @@
 var User= require('../models/user');
 
 
-exports.index = function(req, res){
-  res.render('/users/auth', {title:'User Authentication'});
+exports.auth = function(req, res){
+  res.render('users/auth', {title:'User Authentication'});
 };
 
 exports.register = function(req, res){
@@ -32,7 +32,7 @@ exports.login = function(req, res){
       });
     }else{
       req.session.destroy(function(){
-        res.render('users/auth', {title: 'User AUthentication'});
+        res.render('users/auth', {title: 'User Authentication'});
       });
     }
   });

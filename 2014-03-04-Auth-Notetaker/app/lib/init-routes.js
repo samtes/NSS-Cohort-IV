@@ -17,7 +17,7 @@ function load(app, fn){
   var users = require('../routes/users');
 
   app.get('/', d, home.index);
-  app.get('/users/auth', d, users.index);
+  app.get('/auth', d, users.auth);
   app.post('/register', d, users.register);
   app.post('/login', d, users.login);
   console.log('Routes Loaded');

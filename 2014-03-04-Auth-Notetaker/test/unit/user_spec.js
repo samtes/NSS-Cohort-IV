@@ -6,6 +6,7 @@ var User;
 
 describe('User', function(){
   var testID;
+  var u2;
   before(function(done){
     var initMongo = require('../../app/lib/init-mongo');
     initMongo.db(function(){
@@ -17,10 +18,20 @@ describe('User', function(){
   beforeEach(function(done){
     global.nss.db.dropDatabase(function(err, result){
       var u1 = new User ({email:'bob@aol.com', password:'1234'});
+      u2 = new User({email:'matt@aol.com', password: 'abcd'});
+      var u3 = new User({email:'eril@aol.com', password: 'bcdf'});
       u1.hashPassword(function(){
         u1.insert(function(){
-          testID = u1._id;
-          done();
+          u2.hashPassword(function(){
+            u2.insert(function(){
+              u3.hashPassword(function(){
+                u3.insert(function(){
+                  testID = u1._id;
+                  done();
+                });
+              });
+            });
+          });
         });
       });
     });
@@ -78,18 +89,28 @@ describe('User', function(){
       });
     });
   });
-/*
+
   describe('findByEmailandPassword', function(){
     it('should return a user by email', function(done){
-      var u5 = new User({email:'matt@aol.com', password: 'abcd'});
-      u5.hashPassword(function(){
-        u5.insert(function(){
-          User.findByEmailAndPassword
-        });
+      User.findByEmailAndPassword('matt@aol.com', 'abcd', function(record){
+        expect(record._id).to.deep.equal(u2._id);
+        done();
+      });
+    });
+
+    it('should not return a user', function(done){
+      User.findByEmailAndPassword('matt@aol.com', 'abcdesdf', function(record){
+        expect(record).to.equal(null);
+        done();
+      });
+    });
+    it('should return null', function(done){
+      User.findByEmailAndPassword('mattt@aol.com', 'abcd', function(record){
+        expect(record).to.equal(null);
+        done();
       });
     });
   });
-*/
 });
 
 /*

@@ -1,9 +1,9 @@
-/* globals expect:true */
+/* jshint expr:true */
 'use strict';
 
 process.env.DBNAME = 'note2-test';
 var app = require('../../app/app');
-var expect = require('chai');
+var expect = require('chai').expect;
 var request = require('supertest');
 var User;
 var sue;
@@ -21,8 +21,10 @@ describe('User', function(){
   beforeEach(function(done){
     global.nss.db.dropDatabase(function(err, result){
       sue = new User({email: 'sue@aol.com', password: 'abcd'});
-      sue.insert(function(){
-        done();
+      sue.hashPassword(function(){
+        sue.insert(function(){
+          done();
+        });
       });
     });
   });
@@ -40,7 +42,7 @@ describe('User', function(){
       request(app)
       .get('/auth')
       .end(function(err, res){
-        expect(res.status).to.equal(201);
+        expect(res.status).to.equal(200);
         expect(res.text).to.include('User Authentication');
         done();
       });
@@ -83,9 +85,9 @@ describe('User', function(){
         done();
       });
     });
-    it('should not login a user', function(done){
+    it('should not login a user 2', function(done){
       request(app)
-      .post('/register')
+      .post('/login')
       .field('email', 'bob@aol.com')
       .field('password', '1234')
       .end(function(err, res){
