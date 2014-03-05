@@ -11,8 +11,42 @@ html(class='no-js', lang='en')
     script(src='/js/vendor/modernizr.js')
   body
     .row
-      .small-12.columns
+      .small-5.small-centered.columns
+    .row
+      .small-5.small-centered.columns
+        label &nbsp
         h1=title
+        label &nbsp
+    .row#wrapper
+      .small-2.columns
+         .showLogin Login
+        .small-8.columns
+        .small-2.columns
+          .showRegister Register
+    .row
+      .small-4.columns
+        form#log.hide(action='/login/', method='post', enctype='multipart/form-data')
+          fieldset
+            label Email
+            input(type='email', name='email', required)
+            label Password
+            input(type='password', name='password', required)
+            .row
+              .small-12.columns#login
+                label &nbsp
+                button.tiny.radius.expand Login
+    .row
+      .small-4.columns
+        form#reg.hide(action='/register/', method='post', enctype='multipart/form-data')
+          fieldset
+            label Email
+            input(type='email', name='email', required)
+            label Password
+            input(type='password', name='password', required)
+            .row
+              .small-12.columns#register
+                label &nbsp
+                button.tiny.radius.expand  Register
 
 
 
