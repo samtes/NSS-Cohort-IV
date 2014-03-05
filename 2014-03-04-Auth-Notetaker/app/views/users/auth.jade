@@ -1,22 +1,9 @@
-doctype html
-//[if IE 9]><html class="lt-ie10" lang="en" > <![endif]
-html(class='no-js', lang='en')
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title=title
-    link(rel='stylesheet', href='/css/normalize.css')
-    link(rel='stylesheet', href='/css/foundation.css')
-    link(rel='stylesheet', href='/less/app.css')
-    script(src='/js/vendor/modernizr.js')
-  body
-    .row
-      .small-5.small-centered.columns
-    .row
-      .small-5.small-centered.columns
-        label &nbsp
+extends ../shared/template
+
+block content
+    .row 
+      .small-12.small-centered.columns
         h1=title
-        label &nbsp
     .row#wrapper
       .small-2.columns
          .showLogin Login
@@ -24,8 +11,8 @@ html(class='no-js', lang='en')
         .small-2.columns
           .showRegister Register
     .row
-      .small-4.columns
-        form#log.hide(action='/login/', method='post', enctype='multipart/form-data')
+      .small-10.columns#log.hide
+        form(action='/login/', method='post', enctype='multipart/form-data')
           fieldset
             label Email
             input(type='email', name='email', required)
@@ -36,8 +23,8 @@ html(class='no-js', lang='en')
                 label &nbsp
                 button.tiny.radius.expand Login
     .row
-      .small-4.columns
-        form#reg.hide(action='/register/', method='post', enctype='multipart/form-data')
+      .small-10.columns#reg.hide
+        form(action='/register/', method='post', enctype='multipart/form-data')
           fieldset
             label Email
             input(type='email', name='email', required)
