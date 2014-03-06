@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 module.exports = function(req, res, next){
 
   var User = require('../models/user');

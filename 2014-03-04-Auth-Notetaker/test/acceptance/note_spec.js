@@ -8,7 +8,7 @@ var User, Note;
 var sue;
 var cookie;
 
-describe('User', function(){
+describe('Notes', function(){
   before(function(done){
     request(app)
     .get('/')
@@ -55,6 +55,48 @@ describe('User', function(){
         .get('/notes')
         .set('cookie', cookie)
         .expect(200, done);
+      });
+    });
+
+    describe('GET /notes/new', function(){
+      it('should display new notes page on click because user is logged in', function(done){
+        request(app)
+        .get('/notes/new')
+        .set('cookie', cookie)
+        .expect(200, done);
+      });
+    });
+
+    describe('POST /notes', function(){
+      it('should insert a new note object in the db', function(done){
+        var n1 = {title:'Node', body:'node info', dateCreated:'2014-03-24', tags:'hm, prog, code', userId: sue._id.toString()};
+        request(app)
+        .post('/notes')
+        .send(n1)
+        .set('cookie', cookie)
+        .expect(302, done);
+      });
+    });
+
+    describe('GET /notes/:id', function(){
+      it('should display the note selected on a different page', function(done){
+        var n1 = new Note({title:'Node', body:'node info', dateCreated:'2014-03-24', tags:'hm, prog, code', userId: sue._id.toString()});
+        n1.insert(function(note){
+          request(app)
+          .get('/notes/' + n1._id.toString())
+          .expect(302, done);
+        });
+      });
+    });
+
+    describe('DELETE /notes/:id', function(){
+      it('should delete a note from the notes database', function(done){
+        var n1 = new Note({title:'Node', body:'node info', dateCreated:'2014-03-24', tags:'hm, prog, code', userId: sue._id.toString()});
+        n1.insert(function(note){
+          request(app)
+          .del('/notes/' + n1._id.toString())
+          .expect(302, done);
+        });
       });
     });
   });

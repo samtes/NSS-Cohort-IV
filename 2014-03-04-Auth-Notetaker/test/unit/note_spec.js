@@ -74,11 +74,36 @@ describe('Note', function(){
   });
 
   describe('findNotesByUserId', function(){
-    it('should find note by id', function(done){
+    it('should find noteis by User id', function(done){
       var id = sue._id.toString();
       Note.findNotesByUserId(id, function(notes){
         expect(notes.length).to.be.equal(2);
         done();
+      });
+    });
+  });
+
+  describe('findById', function(){
+    it('should find a note by id', function(done){
+      var id = n6._id.toString();
+      Note.findById(id, function(note){
+
+        expect(note.title).to.be.equal('Javascript');
+        expect(note.body).to.be.equal('jQuery stuff');
+        done();
+      });
+    });
+  });
+
+  describe('deleteNote', function(){
+    it('should delete note from db', function(done){
+      var id = n5._id.toString();
+      Note.deleteNote(id, function(count){
+        Note.findById(id, function(note){
+          expect(count).to.equal(1);
+          expect(note).to.equal(null);
+          done();
+        });
       });
     });
   });
