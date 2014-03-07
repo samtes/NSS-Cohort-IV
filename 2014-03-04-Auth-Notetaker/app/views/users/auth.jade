@@ -1,18 +1,15 @@
 extends ../shared/template
 
 block content
-    .row 
-      .small-12.small-centered.columns
-        h1=title
     .row#wrapper
-      .small-2.columns
+      .small-6.columns
          .showLogin Login
-        .small-8.columns
-        .small-2.columns
+        .small-6.columns
+        .small-6.columns
           .showRegister Register
     .row
       .small-10.columns#log.hide
-        form(action='/login/', method='post', enctype='multipart/form-data')
+        form(action='/login', method='post', enctype='multipart/form-data')
           fieldset
             label Email
             input(type='email', name='email', required)
@@ -21,10 +18,10 @@ block content
             .row
               .small-12.columns#login
                 label &nbsp
-                button.tiny.radius.expand Login
+                button.tiny.radius.expand.log-reg Login
     .row
       .small-10.columns#reg.hide
-        form(action='/register/', method='post', enctype='multipart/form-data')
+        form(action='/register', method='post', enctype='multipart/form-data')
           fieldset
             label Email
             input(type='email', name='email', required)
@@ -33,7 +30,7 @@ block content
             .row
               .small-12.columns#register
                 label &nbsp
-                button.tiny.radius.expand  Register
+                button.tiny.radius.expand.log-reg  Register
 
 
 

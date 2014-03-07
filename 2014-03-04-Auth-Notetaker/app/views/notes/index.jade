@@ -2,3 +2,15 @@ extends ../shared/template
 
 block content
   h5 Notes
+
+  .row
+    .small-12.columns
+      each note in notes
+        a(href='notes/' + note._id)
+          form
+            fieldset.display
+              .displays
+                .title=note.title
+                .date= moment(note.dateCreated).format('MMMM Do, YYYY')
+                .body= note.body
+

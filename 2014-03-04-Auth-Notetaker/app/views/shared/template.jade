@@ -13,24 +13,27 @@ html(class='no-js', lang='en')
     nav.top-bar
       ul.title-area
         li.name
-          h1: a(href='/') Note II
+          h1: a(href='/') Note Taker Node
         li.toggle-topbar.menu-icon
           a(href='#') Menu
 
       section.top-bar-section
         ul.left
         ul.right
-          li: a(href='/') Home
+          li: a(href='/notes') Home
           li: divider
           if user
-            li: a(href='/')=user.email
+            li: a(href='/notes')=user.email
             li: divider
-            li: form(action='/logout', method='post')
-                  button.linker.tiny Log out
+            li: a(href='/notes') Notes
+            li: divider
+            li: a(href='/notes/new') Create Notes
+            li: divider
+            li: form(action='/logout', method='post'): button.linker.tiny.radius Log out
           else
             li: divider
-            li: a(href='/auth').reg Register/Login
-    .row 
+            li: a(href='/auth').reg Register / Login
+    .row
       .small-5.small-centered.columns
         block content
 

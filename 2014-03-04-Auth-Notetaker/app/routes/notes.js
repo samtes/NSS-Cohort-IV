@@ -1,10 +1,11 @@
 'use strict';
+var moment = require('moment');
 
 var Note = require('../models/note');
 
 exports.index = function(req, res){
   Note.findNotesByUserId(req.session.userId, function(notes){
-    res.render('notes/index', {title:'Notes', notes:notes});
+    res.render('notes/index', {title:'Notes', moment:moment, notes:notes});
   });
 };
 
@@ -28,6 +29,6 @@ exports.destroy = function(req, res){
 
 exports.show = function(req, res){
   Note.findById(req.params.id, function(note){
-    res.render('notes/show', {title:note.title, body:note.body, dateCreated:note.dateCreated, tags:note.tags});
+    res.render('notes/show', {moment:moment, note:note});
   });
 };
